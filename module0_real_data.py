@@ -27,9 +27,7 @@ from pathlib import Path
 import time
 
 
-# =============================================================================
 # SOURCE 1: META CANOPY HEIGHT MAP (easiest, no account needed)
-# =============================================================================
 def fetch_meta_canopy_height(lat: float, lon: float,
                               buffer_deg: float = 0.05) -> dict:
     """
@@ -182,7 +180,7 @@ def fetch_canopy_height_via_gee(lat: float, lon: float,
     return df
 
 
-# =============================================================================
+
 # SOURCE 2: PAIR WITH SENTINEL-2 BANDS
 # =============================================================================
 def build_real_training_data(height_df: pd.DataFrame,
@@ -251,7 +249,7 @@ def build_real_training_data(height_df: pd.DataFrame,
     return sat_features
 
 
-# =============================================================================
+
 # AUGMENTATION: EXPAND SMALL REAL DATASET
 # =============================================================================
 def augment_real_data(real_df: pd.DataFrame,
@@ -292,7 +290,7 @@ def augment_real_data(real_df: pd.DataFrame,
     return result
 
 
-# =============================================================================
+
 # MASTER FUNCTION — replaces generate_synthetic_training_data()
 # =============================================================================
 def get_real_training_data(lat: float, lon: float,
@@ -315,8 +313,7 @@ def get_real_training_data(lat: float, lon: float,
     """
     print("\n[Real Training Data] Attempting to fetch measured heights...")
 
-    # Try GEE first
-    # Sample across a gradient of vegetation density in Rajasthan
+    
     locations = [
         (28.01, 75.79),  # your bare plot
         (27.60, 76.20),  # Sariska forest — denser
@@ -340,7 +337,6 @@ def get_real_training_data(lat: float, lon: float,
                 print(f"   Sources: {height_df['source'].unique().tolist()}")
                 return augmented
 
-    # Fallback
     if fallback_to_synthetic:
         print("\n⚠️  Falling back to synthetic data")
         print("   To use real data: authenticate GEE or wait for Copernicus")
@@ -352,7 +348,7 @@ def get_real_training_data(lat: float, lon: float,
     return None
 
 
-# =============================================================================
+
 # QUICK TEST
 # =============================================================================
 if __name__ == "__main__":
