@@ -1,0 +1,16 @@
+# Core scientific stack
+numpy>=1.24
+pandas>=2.0
+scipy>=1.11
+scikit-learn>=1.3
+joblib>=1.3
+
+# Geospatial / satellite
+earthengine-api>=0.1.380     # Google Earth Engine
+openeo>=0.25                  # Copernicus Data Space
+geemap>=0.30                  # GEE visualisation helper
+rasterio>=1.3
+geopandas>=0.14
+
+# HTTP / data
+requests>=2.31
