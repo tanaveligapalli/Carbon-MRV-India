@@ -38,7 +38,7 @@ DEFAULT_SITE = {
     "buffer_m": 50,   # 50m radius ≈ ~1 ha plot
 }
 
-YEARS_BACK = 1
+YEARS_BACK = 5
 END_DATE   = datetime.date.today().isoformat()
 START_DATE = (datetime.date.today() - datetime.timedelta(days=365 * YEARS_BACK)).isoformat()
 
@@ -143,10 +143,10 @@ def fetch_via_openeo(site: dict = DEFAULT_SITE) -> pd.DataFrame:
     conn.authenticate_oidc()
 
     bbox = {
-        "west": site["lon"] - 0.02,
-        "east": site["lon"] + 0.02,
-        "south": site["lat"] - 0.02,
-        "north": site["lat"] + 0.02,
+        "west": site["lon"] - 0.05,
+        "east": site["lon"] + 0.05,
+        "south": site["lat"] - 0.05,
+        "north": site["lat"] + 0.05,
         "crs": "EPSG:4326"
     }
     cube = conn.load_collection(

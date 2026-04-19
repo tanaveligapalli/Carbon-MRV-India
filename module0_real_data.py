@@ -127,7 +127,11 @@ def fetch_canopy_height_via_gee(lat: float, lon: float,
             "source": "Meta_CHM_2023",
             "date": "2023-01-01",
         })
-        print(f"[Meta CHM via GEE] Height: {meta_stats.get('cover_mean', 'N/A'):.2f}m")
+        cover_mean = meta_stats.get('cover_mean', None)
+        if cover_mean is not None:
+            print(f"[Meta CHM via GEE] Height: {cover_mean:.2f}m")
+        else:
+            print(f"[Meta CHM via GEE] Height: N/A")
     except Exception as e:
         print(f"[Meta CHM] Failed: {e}")
 
